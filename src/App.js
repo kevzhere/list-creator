@@ -1,18 +1,26 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 import './App.css';
+import List from './List.js';
+import Header from './Header.js';
 
 class App extends Component {
+
+
+  addItem = (val) => {
+    console.log(val);
+  }
+
+  newList = () =>{
+    
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+        <Header/>
+        <List addItem={this.addItem}/>
       </div>
     );
   }
