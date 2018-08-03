@@ -5,25 +5,25 @@ import Modal from "./Modal.js";
 class Header extends Component{
 
     state= {
-        show: true
+        show: false
     }
 
     showModal=()=>{
         this.setState((prevState)=>{return {show: !prevState.show}});
-        console.log(this.state.show);
     }
 
     render(){
         return(
             <div className="header">
                 <FaArchive className='logo' size="30px"/>
-                <nav>
-                    <ul>
-                        <li><span>test1</span></li>
-                        <li onClick={this.showModal}><span>test2</span></li>
-                    </ul>
-                </nav>
-                <Modal show={this.state.show} modalClosed={this.showModal}/>
+                <ul className="headerItem">
+                    <li onClick={this.showModal}>Add Item</li>
+                </ul>
+                <Modal 
+                    show={this.state.show} 
+                    modalClosed={this.showModal}
+                    newList={this.props.newList}    
+                />
             </div>
         );
     }
