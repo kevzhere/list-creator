@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
+import { Droppable } from 'react-beautiful-dnd';
+import { Draggable } from 'react-beautiful-dnd';
 import { FaTrash } from 'react-icons/fa';
 import { FaTimes } from 'react-icons/fa';
+
+
+
 class List extends Component{
     
     state = {
@@ -42,18 +47,47 @@ class List extends Component{
     render(){
         const {items} = this.state;
         let list = null;
+
         if(items){
-            list = items.myItems.map((item)=>(
-                <li key={item}><span onClick={()=>this.removeItem(item, items)}><FaTrash/></span>{item}</li>
+            list = items.myItems.map((item, index)=>(
+                <Draggable
+                    draggableId={item}
+                    index={index}
+                    key={index}
+                >
+                {provided => (
+                    <li 
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        ref={provided.innerRef}
+                    >
+                            <span onClick={()=>this.removeItem(item, items)}>
+                                <FaTrash/>
+                            </span>
+                        {item}
+                    </li>
+                )}                    
+                </Draggable>
             ));
         }
+
         return(
             <div className="container">
                 <h1>{items.name}<FaTimes className="close" onClick={this.removeList}/></h1>
                 <form onSubmit={(val) =>this.newItem(val, items)}>
                     <input type="text" onChange={this.handleChange} value={this.state.value} placeholder={this.state.placeholder} ref="newItem"/>
                 </form>
-                <ul>{list ? list: null}</ul>
+                <Droppable droppableId={items.name}>
+                    {provided => (
+                        <ul
+                            ref={provided.innerRef}
+                            {...provided.droppableProps}
+                        >
+                            {list ? list: null}
+                            {provided.placeholder}
+                        </ul>
+                    )}
+                </Droppable>
             </div>
         );
     }

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { DragDropContext } from 'react-beautiful-dnd';
+
 import './App.css';
 import List from './List.js';
 import Header from './Header.js';
@@ -6,9 +8,8 @@ import Header from './Header.js';
 class App extends Component {
 
   state = {
-    lists :[
-      {name: "list1", myItems: ["item1", "item2"]},
-      {name: "list12", myItems: ["item123", "item234"]}]
+    lists :[{name: "list1", myItems: ["item1", "item2"]},
+    {name: "list2", myItems: ["item3", "item4"]}]
   }
 
   addItem = (val, list) => {
@@ -34,7 +35,6 @@ class App extends Component {
   }
 
   newList = (list) =>{
-    console.log(list);
     if(this.alreadyExist(list)){
       alert("Please use a different name!");
       return;
@@ -60,6 +60,58 @@ class App extends Component {
     return repeat;
   }
 
+  onDragEnd = result => {
+    const {destination, source, draggableId } = result;
+
+        if(!destination){
+            return;
+        }
+        if(
+            destination.droppableId === source.droppableId && 
+            destination.index === source.index
+        )
+        return;
+        const {lists} = this.state;
+        let destLoc = 0,
+        targetLoc = 0;
+        const destinationList = lists.filter((val, index) =>{
+          if(val.name === destination.droppableId){
+            destLoc = index;
+            return val;
+          }
+          return null;
+        });
+
+        const targetList = lists.filter((val, index) =>{
+          if(val.name === source.droppableId){
+            targetLoc = index;
+            return val;
+          }
+          return null;
+        });
+
+
+        const destListItems = Array.from(destinationList[0].myItems);
+        destListItems.splice(destination.index, 0, draggableId);
+        const sourceListItems = Array.from(targetList[0].myItems);
+        sourceListItems.splice(source.index, 1);
+        const newDestList = {
+            name: destination.droppableId,
+            myItems: destListItems
+        };
+        const newSourceList = {
+            name: source.droppableId,
+            myItems: sourceListItems
+        }
+
+        let newState = {
+              ...this.state,
+          }
+        newState.lists[targetLoc] = newSourceList;
+        newState.lists[destLoc] = newDestList;
+        this.setState(newState);
+  }
+
   render() {
     const {lists} = this.state;
     const renderLists = lists.map((list)=>
@@ -74,8 +126,10 @@ class App extends Component {
     return (
       <div>
         <Header newList={this.newList}/>
-        <div className="listContainer">          
+        <div className="listContainer">
+        <DragDropContext onDragEnd={this.onDragEnd}>
           {renderLists}
+        </DragDropContext>          
         </div>
       </div>
     );

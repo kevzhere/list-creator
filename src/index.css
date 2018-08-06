@@ -1,9 +1,8 @@
-body {
+html, body {
   margin: 0;
+  height: 100%;
 	font-family: Roboto;
-	background: #1CD8D2; 
-	background: -webkit-linear-gradient(to right, #93EDC7, #1CD8D2); 
-  background: linear-gradient(to right, #93EDC7, #1CD8D2); 
+	background: #007d59;
   font-weight: 400;
 
 }
@@ -15,7 +14,7 @@ p {
 }
 
 h1 {
-  background-color: #2980b9;
+  background-color: #79ddb3;
   color: white;
   margin: 0;
   padding: 10px 20px;
@@ -69,6 +68,7 @@ input:focus{
   background: #f7f7f7;
   box-shadow: 0 0 3px rgba(0,0,0, 0.1);
   position: relative;
+  border: 1px solid black;
 }
 
 .container ul {
@@ -78,19 +78,31 @@ input:focus{
 }
 
 .container li {
-  background-color: white;
+  background-color: #53bfad;
   height: 40px;
   line-height: 40px;
-  color: #666;
+  color: white;
 }
 
 .container li:nth-child(2n){
-  background-color: #f7f7f7;
+  background-color: #3ba0a1;
 }
 
 .container li:hover span{
   width: 40px;
   opacity: 1.0;
+}
+
+.header {
+  margin: 0 auto;
+  background: #79ddb3;
+  border-bottom: 1px solid black;
+}
+
+.header::after {
+  content: '';
+  display: table;
+  clear:both;
 }
 
 .headerItem {
@@ -105,7 +117,7 @@ input:focus{
   padding-top: 25px;
   margin: 0 20px;
   position: relative;
-  color: #444;
+  color: white;
   text-transform: uppercase;
   text-decoration: none;
   font-size: 14px; 
@@ -113,7 +125,6 @@ input:focus{
 }
 
 .headerItem li:hover {
-  color: #000;
   cursor: pointer;
 }
 
@@ -121,7 +132,7 @@ input:focus{
   content: '';
   display: block;
   height: 5px;
-  background: #444;
+  background: white;
 
   position: absolute;
   top: 0;
@@ -142,18 +153,10 @@ button {
   float: left;
   padding: 15px;
   size: 50px;
+  color: white;
 }
 
-.header {
-  margin: 0 auto;
-  background: #55d6aa;
-}
 
-.header::after {
-  content: '';
-  display: table;
-  clear:both;
-}
 
 .backdrop {
   width: 100%;
