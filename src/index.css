@@ -210,39 +210,44 @@ button {
   }
 
   .listContainer {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    grid-template-rows: repeat(2, minmax(100px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
+    grid-template-rows: repeat(auto-fit,  minmax(200px, 1fr));
   }
 }
 
 @media screen and (min-width: 676px) and (max-width: 850px){
   .container{
-    width: 200px;
+    width: 250px;
     font-size: 15px;
   }
 
   .listContainer {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    grid-template-rows: repeat(2, minmax(100px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
+    grid-template-rows: repeat(auto-fit, minmax(200px, 1fr));
   }
 }
 
 @media screen and (min-width: 401px) and (max-width: 675px){
   .container{
-    width: 150px;
+    width: 300px;
     font-size: 15px;
   }
 
   .listContainer {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    grid-template-rows: repeat(2, minmax(100px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-rows: repeat(auto-fit, minmax(300px, 1fr));
   }
 }
 
 @media screen and (max-width: 400px){
   .container{
-    width: 100px;
+    width: 300px;
     font-size: 10px;
+  }
+
+  .listContainer {
+    grid-template-columns: repeat(1, minmax(150px, 1fr));
+    grid-template-rows: repeat(auto-fit, minmax(100px, 1fr));
   }
 
   h1{

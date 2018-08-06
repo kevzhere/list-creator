@@ -17,7 +17,7 @@ class Header extends Component{
             <div className="header">
                 <FaArchive className='logo' size="30px"/>
                 <ul className="headerItem">
-                    <li onClick={this.showModal}>Add List</li>
+                    <li onClick={this.showModal}>New List</li>
                 </ul>
                 <Modal 
                     show={this.state.show} 
