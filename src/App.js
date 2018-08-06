@@ -8,8 +8,7 @@ import Header from './Header.js';
 class App extends Component {
 
   state = {
-    lists :[{name: "list1", myItems: ["item1", "item2"]},
-    {name: "list2", myItems: ["item3", "item4"]}]
+    lists :[]
   }
 
   addItem = (val, list) => {
